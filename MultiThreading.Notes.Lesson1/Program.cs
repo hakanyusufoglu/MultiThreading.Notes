@@ -28,32 +28,57 @@
 
 #region Thread Id
 
-class Program
+//class Program
+//{
+//    private static void Main(string[] args)
+//    {
+//        //Main thread, Thread Id
+//        Console.WriteLine("Main Thread");
+//        Console.WriteLine(Environment.CurrentManagedThreadId);
+//        Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
+
+//        Thread thread = new(() =>
+//        {
+//            //Worker thread, Thread Id
+//            Console.WriteLine("Worker Thread");
+//            Console.WriteLine(Environment.CurrentManagedThreadId);
+//            Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
+//        });
+//        thread.Start();
+
+//        Thread thread2 = new(() =>
+//        {
+//            //Worker thread, Thread Id
+//            Console.WriteLine("Worker Thread 2");
+//            Console.WriteLine(Environment.CurrentManagedThreadId);
+//            Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
+//        });
+//        thread2.Start();
+//    }
+//}
+#endregion
+
+#region IsBackground Property
+internal class Program
 {
     private static void Main(string[] args)
     {
-        //Main thread, Thread Id
-        Console.WriteLine("Main Thread");
-        Console.WriteLine(Environment.CurrentManagedThreadId);
-        Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
-
+        int i = 10;
         Thread thread = new(() =>
         {
-            //Worker thread, Thread Id
-            Console.WriteLine("Worker Thread");
-            Console.WriteLine(Environment.CurrentManagedThreadId);
-            Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
+            while (i >= 0)
+            {
+                i--;
+                Thread.Sleep(1000);
+            }
+            Console.WriteLine("Worker Thread is completed");
         });
+
+        //Varsayılan olarak false gelmektedir. True olduğunda main thread görevini tamamladığında worker thread de sonlanır. ancak false olduğunda main thread görevini tamamladığında worker thread devam eder.
+        thread.IsBackground = true;
         thread.Start();
 
-        Thread thread2 = new(() =>
-        {
-            //Worker thread, Thread Id
-            Console.WriteLine("Worker Thread 2");
-            Console.WriteLine(Environment.CurrentManagedThreadId);
-            Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
-        });
-        thread2.Start();
+        Console.WriteLine("Main Thread is completed");
     }
 }
 #endregion
