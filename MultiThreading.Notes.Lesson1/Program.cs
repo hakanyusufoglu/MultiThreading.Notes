@@ -84,41 +84,42 @@
 #endregion
 
 #region Thread State
-internal class Program
-{
-    private static void Main(string[] args)
-    {
-        int i = 10;
-        Thread thread = new(() =>
-        {
-            while (i >= 0)
-            {
-                i--;
-                Thread.Sleep(1000);
-            }
-            Console.WriteLine("Worker Thread is completed");
-        });
+//class Program
+//{
+//Thread State işlemi tavsiye edilen bir yaklaşım değildir. Çünkü Thread State işlemi işlemciyi meşgul eder ve işlemciyi meşgul etmek performans kaybına neden olur.
+//    private static void Main(string[] args)
+//    {
+//        int i = 10;
+//        Thread thread = new(() =>
+//        {
+//            while (i >= 0)
+//            {
+//                i--;
+//                Thread.Sleep(1000);
+//            }
+//            Console.WriteLine("Worker Thread is completed");
+//        });
 
-        thread.Start();
+//        thread.Start();
 
-        //Threadin state bilgisini alma işlemleri
+//        //Threadin state bilgisini alma işlemleri
 
-        ThreadState state = ThreadState.Running;
-        while (true)
-        {
-            //Eğerki threadin state bilgisi Stopped ise döngüden çık
-            if (thread.ThreadState == ThreadState.Stopped)
-                break;
+//        ThreadState state = ThreadState.Running;
+//        while (true)
+//        {
+//            //Eğerki threadin state bilgisi Stopped ise döngüden çık
+//            if (thread.ThreadState == ThreadState.Stopped)
+//                break;
 
-            //Threadin state bilgisini almak için kullanılır. ve state değiştiğinde ekrana yazdırır.
-            if (state != thread.ThreadState)
-            {
-                state = thread.ThreadState;
-                Console.WriteLine(thread.ThreadState);
-            }
-        }
+//            //Threadin state bilgisini almak için kullanılır. ve state değiştiğinde ekrana yazdırır.
+//            if (state != thread.ThreadState)
+//            {
+//                state = thread.ThreadState;
+//                Console.WriteLine(thread.ThreadState);
+//            }
+//        }
 
-        Console.WriteLine("Main Thread is completed");
-    }
-}
+//        Console.WriteLine("Main Thread is completed");
+//    }
+//}
 #endregion
