@@ -125,42 +125,65 @@
 #endregion
 
 #region Locking
+//internal class Program
+//{
+//    private static void Main(string[] args)
+//    {
+//        // iki threadin kullandığı i değişkeni ortak kaynağı temsil etmektedir. Bu durum race condition'a neden olacaktır. Bu durumu engellemek için lock anahtar kelimesi kullanılır. Bu da senkronizasyon işlemi sağlar.
+//        int i = 1;
+
+//        //locking için ortak nesne olarak object kullanılır. Böylelikle thread 1 işini tamamladıktan sonra thread 2 işlemine başlar. Bir yarış durumu oluşmaz.
+//        object locking = new();
+
+//        Thread thread1 = new(() =>
+//        {
+//            lock (locking)
+//            {
+//                while (i < 10)
+//                {
+//                    i++;
+//                    Console.WriteLine($"Thread 1 : {i}");
+//                }
+//            }
+//        });
+
+//        Thread thread2 = new(() =>
+//        {
+//            lock (locking)
+//            {
+//                while (i > 0)
+//                {
+//                    i--;
+//                    Console.WriteLine($"Thread 2 : {i}");
+//                }
+//            }
+//        });
+
+//        thread1.Start();
+//        thread2.Start();
+//    }
+//}
+#endregion
+
+#region Sleep
 internal class Program
 {
     private static void Main(string[] args)
     {
-        // iki threadin kullandığı i değişkeni ortak kaynağı temsil etmektedir. Bu durum race condition'a neden olacaktır. Bu durumu engellemek için lock anahtar kelimesi kullanılır. Bu da senkronizasyon işlemi sağlar.
-        int i = 1;
-
-        //locking için ortak nesne olarak object kullanılır. Böylelikle thread 1 işini tamamladıktan sonra thread 2 işlemine başlar. Bir yarış durumu oluşmaz.
-        object locking = new();
-
-        Thread thread1 = new(() =>
+        Thread thread = new(() =>
         {
-            lock (locking)
+            for (int i = 0;i < 10; i++)
             {
-                while (i < 10)
-                {
-                    i++;
-                    Console.WriteLine($"Thread 1 : {i}");
-                }
-            }
+                Console.WriteLine($"Worker Thread {i}");
+
+                //Thread.Sleep(1000); //Thread 1 saniye durur ve işlemine devam eder. 1000ms = 1s 
+                //Thread sleep işlemi bu threadi ilgili süre kadar durdurur ancak diğer threadler çalışmaya devam eder.
+                //Thread.Sleep(0); işlemi bile cpuyu rahatlatmayı sağlar.
+                Thread.Sleep(1000);
+            }   
         });
 
-        Thread thread2 = new(() =>
-        {
-            lock (locking)
-            {
-                while (i > 0)
-                {
-                    i--;
-                    Console.WriteLine($"Thread 2 : {i}");
-                }
-            }
-        });
-
-        thread1.Start();
-        thread2.Start();
+        thread.Start();
     }
 }
 #endregion
