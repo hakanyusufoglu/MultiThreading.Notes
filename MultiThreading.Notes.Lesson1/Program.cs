@@ -123,3 +123,44 @@
 //    }
 //}
 #endregion
+
+#region Locking
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        // iki threadin kullandığı i değişkeni ortak kaynağı temsil etmektedir. Bu durum race condition'a neden olacaktır. Bu durumu engellemek için lock anahtar kelimesi kullanılır. Bu da senkronizasyon işlemi sağlar.
+        int i = 1;
+
+        //locking için ortak nesne olarak object kullanılır. Böylelikle thread 1 işini tamamladıktan sonra thread 2 işlemine başlar. Bir yarış durumu oluşmaz.
+        object locking = new();
+
+        Thread thread1 = new(() =>
+        {
+            lock (locking)
+            {
+                while (i < 10)
+                {
+                    i++;
+                    Console.WriteLine($"Thread 1 : {i}");
+                }
+            }
+        });
+
+        Thread thread2 = new(() =>
+        {
+            lock (locking)
+            {
+                while (i > 0)
+                {
+                    i--;
+                    Console.WriteLine($"Thread 2 : {i}");
+                }
+            }
+        });
+
+        thread1.Start();
+        thread2.Start();
+    }
+}
+#endregion
