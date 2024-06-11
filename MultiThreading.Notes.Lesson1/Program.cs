@@ -166,24 +166,53 @@
 #endregion
 
 #region Sleep
+//internal class Program
+//{
+//    private static void Main(string[] args)
+//    {
+//        Thread thread = new(() =>
+//        {
+//            for (int i = 0;i < 10; i++)
+//            {
+//                Console.WriteLine($"Worker Thread {i}");
+
+//                //Thread.Sleep(1000); //Thread 1 saniye durur ve işlemine devam eder. 1000ms = 1s 
+//                //Thread sleep işlemi bu threadi ilgili süre kadar durdurur ancak diğer threadler çalışmaya devam eder.
+//                //Thread.Sleep(0); işlemi bile cpuyu rahatlatmayı sağlar.
+//                Thread.Sleep(1000);
+//            }   
+//        });
+
+//        thread.Start();
+//    }
+//}
+#endregion
+
+#region Join
 internal class Program
 {
     private static void Main(string[] args)
     {
         Thread thread = new(() =>
         {
-            for (int i = 0;i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine($"Worker Thread {i}");
+                Console.WriteLine($"Worker 1 Thread {i}");
+            }
+        });
 
-                //Thread.Sleep(1000); //Thread 1 saniye durur ve işlemine devam eder. 1000ms = 1s 
-                //Thread sleep işlemi bu threadi ilgili süre kadar durdurur ancak diğer threadler çalışmaya devam eder.
-                //Thread.Sleep(0); işlemi bile cpuyu rahatlatmayı sağlar.
-                Thread.Sleep(1000);
-            }   
+        Thread thread2 = new(() =>
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine($"Worker 2 Thread {i}");
+            }
         });
 
         thread.Start();
+        //Artık thread 2 çalışmaya başlamadan önce thread 1 çalışmaya başlar. Yani thread 1 tamamlandıktan sonra thread 2 çalışmaya başlar.
+        thread.Join();
+        thread2.Start();
     }
 }
 #endregion
