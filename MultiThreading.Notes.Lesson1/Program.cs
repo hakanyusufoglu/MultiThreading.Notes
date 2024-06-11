@@ -189,30 +189,56 @@
 #endregion
 
 #region Join
+//internal class Program
+//{
+//    private static void Main(string[] args)
+//    {
+//        Thread thread = new(() =>
+//        {
+//            for (int i = 0; i < 10; i++)
+//            {
+//                Console.WriteLine($"Worker 1 Thread {i}");
+//            }
+//        });
+
+//        Thread thread2 = new(() =>
+//        {
+//            for (int i = 0; i < 10; i++)
+//            {
+//                Console.WriteLine($"Worker 2 Thread {i}");
+//            }
+//        });
+
+//        thread.Start();
+//        //Artık thread 2 çalışmaya başlamadan önce thread 1 çalışmaya başlar. Yani thread 1 tamamlandıktan sonra thread 2 çalışmaya başlar.
+//        thread.Join();
+//        thread2.Start();
+//    }
+//}
+#endregion
+
+#region Thread iptal etme
 internal class Program
 {
     private static void Main(string[] args)
     {
+
+        //Threadin durdurulması için bir bool değişken tanımlanır ve bu değişken false olduğu sürece thread çalışmaya devam eder.
+        //Graceful shutdown işlemi. İşaretle ve bitir.
+        bool stop = false;
+
         Thread thread = new(() =>
         {
-            for (int i = 0; i < 10; i++)
+            while (!stop)
             {
-                Console.WriteLine($"Worker 1 Thread {i}");
+                Console.WriteLine("Thread is running");
             }
-        });
 
-        Thread thread2 = new(() =>
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine($"Worker 2 Thread {i}");
-            }
+            Console.WriteLine("Thread is completed");
         });
-
         thread.Start();
-        //Artık thread 2 çalışmaya başlamadan önce thread 1 çalışmaya başlar. Yani thread 1 tamamlandıktan sonra thread 2 çalışmaya başlar.
-        thread.Join();
-        thread2.Start();
+        Thread.Sleep(1000);
+        stop = true;
     }
 }
 #endregion
