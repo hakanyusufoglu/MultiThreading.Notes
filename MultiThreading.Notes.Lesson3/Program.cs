@@ -217,41 +217,67 @@
 #endregion
 
 #region Mutex Class
+//internal class Program
+//{
+//    private static void Main(string[] args)
+//    {
+//        //Mutex sınıfı : Monitor sınıfının daha gelişmiş bir versiyonudur. Monitor sınıfı sadece aynı uygulama içerisindeki threadler arasında kullanılabilirken Mutex sınıfı farklı uygulamalar (processler) arasında da kullanılabilir.
+//        Mutex mutex = new();
+//        Thread thread1 = new(() =>
+//        {
+//            //Mutex sınıfı ile bir kaynağı işgal ettiğimizde o kaynağı işgal eden thread dışındaki diğer threadler o kaynağı işgal edemez.
+//            //mutex.WaitOne() ile bir kaynağı işgal ederken mutex.ReleaseMutex() ile o kaynağı serbest bırakırız.
+//            mutex.WaitOne();
+
+//            for (int i = 0; i < 10; i++)
+//            {
+//                Console.WriteLine($"Thread 1 {i}");
+//            }
+
+//            mutex.ReleaseMutex();
+//        });
+
+
+//        Thread thread2 = new(() =>
+//        {
+//            mutex.WaitOne();
+
+//            for (int i = 0; i < 10; i++)
+//            {
+//                Console.WriteLine($"Thread 2 {i}");
+//            }
+
+//            mutex.ReleaseMutex();
+//        });
+
+//        thread1.Start();
+//        thread2.Start();
+//    }
+//}
+#endregion
+
+#region Single Instance Application with Mutex
 internal class Program
 {
+    static Mutex _mutex;
+    static string _programName = "Example Project Name";
     private static void Main(string[] args)
     {
-        //Mutex sınıfı : Monitor sınıfının daha gelişmiş bir versiyonudur. Monitor sınıfı sadece aynı uygulama içerisindeki threadler arasında kullanılabilirken Mutex sınıfı farklı uygulamalar (processler) arasında da kullanılabilir.
-        Mutex mutex = new();
-        Thread thread1 = new(() =>
+        Mutex.TryOpenExisting(_programName, out _mutex);
+
+        if (_mutex is null)
         {
-            //Mutex sınıfı ile bir kaynağı işgal ettiğimizde o kaynağı işgal eden thread dışındaki diğer threadler o kaynağı işgal edemez.
-            //mutex.WaitOne() ile bir kaynağı işgal ederken mutex.ReleaseMutex() ile o kaynağı serbest bırakırız.
-            mutex.WaitOne();
+            _mutex=new Mutex(true,_programName);
 
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine($"Thread 1 {i}");
-            }
-
-            mutex.ReleaseMutex();
-        });
-
-
-        Thread thread2 = new(() =>
+            Console.WriteLine("Program is running..."); ;
+            Console.Read();
+        }
+        else
         {
-            mutex.WaitOne();
-
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine($"Thread 2 {i}");
-            }
-
-            mutex.ReleaseMutex();
-        });
-
-        thread1.Start();
-        thread2.Start();
+            //mutex nesnesi varsa ilgili mutexi kapat.
+            _mutex.Close();
+            return;
+        }
     }
 }
 #endregion
