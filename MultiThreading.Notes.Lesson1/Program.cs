@@ -244,26 +244,50 @@
 #endregion
 
 #region CancellationToken
+//internal class Program
+//{
+//    private static void Main(string[] args)
+//    {
+//        Thread thread = new((CancellationToken) =>
+//        {
+//            var cancel = (CancellationToken)CancellationToken;
+//            while (cancel.IsCancellationRequested)
+//            {
+//                Console.WriteLine("Thread is running");
+//            }
+
+//            Console.WriteLine("Thread is completed");
+//        });
+//        CancellationTokenSource cancellationTokenSource = new();
+
+//        //threaddeki parametre olarak cancellationTokenSource verilir. Bu sayede thread çalışırken bu token kontrol edilir ve eğer işlem iptal edilirse thread durdurulur.
+//        thread.Start(cancellationTokenSource);
+//        Thread.Sleep(1000);
+//        cancellationTokenSource.Cancel();
+//    }
+//}
+#endregion
+
+#region Interrupt Method
 internal class Program
 {
     private static void Main(string[] args)
     {
-        Thread thread = new((CancellationToken) =>
+        Thread thread = new(() =>
         {
-            var cancel = (CancellationToken)CancellationToken;
-            while (cancel.IsCancellationRequested)
+            //thread süresiz şekilde bekletiliyor
+            try
             {
-                Console.WriteLine("Thread is running");
+                Console.WriteLine("Thread is sleep");
+                Thread.Sleep(Timeout.Infinite);
             }
-
-            Console.WriteLine("Thread is completed");
+            catch (ThreadInterruptedException ex)
+            {
+                Console.WriteLine("Thread wake up");
+            }
         });
-        CancellationTokenSource cancellationTokenSource = new();
-
-        //threaddeki parametre olarak cancellationTokenSource verilir. Bu sayede thread çalışırken bu token kontrol edilir ve eğer işlem iptal edilirse thread durdurulur.
-        thread.Start(cancellationTokenSource);
-        Thread.Sleep(1000);
-        cancellationTokenSource.Cancel();
+        thread.Start();
+        thread.Interrupt();
     }
 }
 #endregion
