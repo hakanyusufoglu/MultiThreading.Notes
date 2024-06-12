@@ -56,29 +56,47 @@ internal class Program
         //Ortak kaynak üzerinde işlem yaparken bir threadin diğer threadin işlemine müdahale etmemesi için Monitor.Enter ve Monitor.Exit kullanılır.
         //Monitor.Enter ve Monitor.Exit kullanıldığında bir thread bir kaynağı işgal ettiğinde diğer thread o kaynağı işgal edemez.
 
+        //Monitor enter ve exit kullanıldığında bir hata meydana geldiğinde kaynak serbest bırakılmayacaktır. hatanın alındığı yeerde monitor exit kullanılmalıdır. Bu durum için finnaly bloğu kullanılabilir.
+
+        //Lock mekanizması bu durumu otomatik olarak yapar. Yani kaynağı işgal eden thread işini bitirdiğinde kaynağı serbest bırakır. Monitor enter ve exit kullanıldığında bu işlemi manuel olarak yapmak gerekir.
+
         //Ortak kaynak
         int i = 0;
+
         object locking = new();
 
         Thread thread1 = new(() =>
         {
-            lock (locking)
+            try
             {
+                Monitor.Enter(locking);
+
                 for (i = 0; i < 10; i++)
                 {
                     Console.WriteLine($"Thread 1 {i}");
                 }
             }
+            finally
+            {
+                Monitor.Exit(locking);
+            }
+
         });
 
         Thread thread2 = new(() =>
         {
-            lock (locking)
+            try
             {
+                Monitor.Enter(locking);
+
                 for (i = 0; i < 10; i++)
                 {
                     Console.WriteLine($"Thread 2 {i}");
-                } 
+                }
+            }
+            finally
+            {
+                Monitor.Exit(locking);
             }
         });
 
