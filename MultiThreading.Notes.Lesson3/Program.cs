@@ -106,12 +106,64 @@
 #endregion
 
 #region LockTaken
+//internal class Program
+//{
+//    private static void Main(string[] args)
+//    {
+//        //lockToken parametresi: lock mekanizmasının işlemi başarılı bir şekilde gerçekleşip gerçekleşmediğini kontrol eder. Çünkü Monitor.Enter ve Monitor.Exit lock işleminin başarılı bir şekilde gerçekleştiğinin garantisini vermemektedir.
+
+//        //Ortak kaynak
+//        int i = 0;
+
+//        object locking = new();
+
+//        Thread thread1 = new(() =>
+//        {
+//            try
+//            {
+//                bool lockTaken = false;
+//                Monitor.Enter(locking, ref lockTaken);
+
+//                if (lockTaken)
+//                    for (i = 0; i < 10; i++)
+//                        Console.WriteLine($"Thread 1 {i}");
+//            }
+//            finally
+//            {
+//                Monitor.Exit(locking);
+//            }
+
+//        });
+
+//        Thread thread2 = new(() =>
+//        {
+//            try
+//            {
+//                bool lockTaken = false;
+//                Monitor.Enter(locking, ref lockTaken);
+
+//                if (lockTaken)
+//                    for (i = 0; i < 10; i++)
+//                        Console.WriteLine($"Thread 2 {i}");
+//            }
+//            finally
+//            {
+//                Monitor.Exit(locking);
+//            }
+//        });
+
+//        thread1.Start();
+//        thread2.Start();
+//    }
+//}
+#endregion
+
+#region Monitor.TryEnter
 internal class Program
 {
     private static void Main(string[] args)
     {
-        //lockToken parametresi: lock mekanizmasının işlemi başarılı bir şekilde gerçekleşip gerçekleşmediğini kontrol eder. Çünkü Monitor.Enter ve Monitor.Exit lock işleminin başarılı bir şekilde gerçekleştiğinin garantisini vermemektedir.
-
+        //Monitor.TryEnter 
         //Ortak kaynak
         int i = 0;
 
@@ -119,36 +171,42 @@ internal class Program
 
         Thread thread1 = new(() =>
         {
-            try
+            //Monitor.TryEnter kullanıldığında belirli bir süre içerisinde kaynağı işgal edemezse işlemi iptal eder.
+            var result = Monitor.TryEnter(locking, 20);
+            if (result)
             {
-                bool lockTaken = false;
-                Monitor.Enter(locking, ref lockTaken);
+                try
+                {
 
-                if (lockTaken)
+
                     for (i = 0; i < 10; i++)
                         Console.WriteLine($"Thread 1 {i}");
-            }
-            finally
-            {
-                Monitor.Exit(locking);
+                }
+                finally
+                {
+                    Monitor.Exit(locking);
+                }
             }
 
         });
 
         Thread thread2 = new(() =>
         {
-            try
+            //Monitor.TryEnter kullanıldığında belirli bir süre içerisinde kaynağı işgal edemezse işlemi iptal eder.
+            var result = Monitor.TryEnter(locking, 1);
+            if (result)
             {
-                bool lockTaken = false;
-                Monitor.Enter(locking, ref lockTaken);
+                try
+                {
 
-                if (lockTaken)
+
                     for (i = 0; i < 10; i++)
                         Console.WriteLine($"Thread 2 {i}");
-            }
-            finally
-            {
-                Monitor.Exit(locking);
+                }
+                finally
+                {
+                    Monitor.Exit(locking);
+                }
             }
         });
 
