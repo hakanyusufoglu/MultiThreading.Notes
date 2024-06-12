@@ -218,27 +218,52 @@
 #endregion
 
 #region Thread iptal etme
+//internal class Program
+//{
+//    private static void Main(string[] args)
+//    {
+
+//        //Threadin durdurulması için bir bool değişken tanımlanır ve bu değişken false olduğu sürece thread çalışmaya devam eder.
+//        //Graceful shutdown işlemi. İşaretle ve bitir.
+//        bool stop = false;
+
+//        Thread thread = new(() =>
+//        {
+//            while (!stop)
+//            {
+//                Console.WriteLine("Thread is running");
+//            }
+
+//            Console.WriteLine("Thread is completed");
+//        });
+//        thread.Start();
+//        Thread.Sleep(1000);
+//        stop = true;
+//    }
+//}
+#endregion
+
+#region CancellationToken
 internal class Program
 {
     private static void Main(string[] args)
     {
-
-        //Threadin durdurulması için bir bool değişken tanımlanır ve bu değişken false olduğu sürece thread çalışmaya devam eder.
-        //Graceful shutdown işlemi. İşaretle ve bitir.
-        bool stop = false;
-
-        Thread thread = new(() =>
+        Thread thread = new((CancellationToken) =>
         {
-            while (!stop)
+            var cancel = (CancellationToken)CancellationToken;
+            while (cancel.IsCancellationRequested)
             {
                 Console.WriteLine("Thread is running");
             }
 
             Console.WriteLine("Thread is completed");
         });
-        thread.Start();
+        CancellationTokenSource cancellationTokenSource = new();
+
+        //threaddeki parametre olarak cancellationTokenSource verilir. Bu sayede thread çalışırken bu token kontrol edilir ve eğer işlem iptal edilirse thread durdurulur.
+        thread.Start(cancellationTokenSource);
         Thread.Sleep(1000);
-        stop = true;
+        cancellationTokenSource.Cancel();
     }
 }
 #endregion
