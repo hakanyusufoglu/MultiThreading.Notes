@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.34909.67
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson2", "MultiThreading.Notes.Lesson1\MultiThreading.Notes.Lesson2.csproj", "{3368F0B5-4E14-4667-B5AF-3A155B4A76D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson2", "MultiThreading.Notes.Lesson1\MultiThreading.Notes.Lesson2.csproj", "{3368F0B5-4E14-4667-B5AF-3A155B4A76D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson3", "MultiThreading.Notes.Lesson3\MultiThreading.Notes.Lesson3.csproj", "{449A15BE-898E-48C3-879F-D06ADA511134}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3368F0B5-4E14-4667-B5AF-3A155B4A76D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3368F0B5-4E14-4667-B5AF-3A155B4A76D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3368F0B5-4E14-4667-B5AF-3A155B4A76D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{449A15BE-898E-48C3-879F-D06ADA511134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{449A15BE-898E-48C3-879F-D06ADA511134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{449A15BE-898E-48C3-879F-D06ADA511134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{449A15BE-898E-48C3-879F-D06ADA511134}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
