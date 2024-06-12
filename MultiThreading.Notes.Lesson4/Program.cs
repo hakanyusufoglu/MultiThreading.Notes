@@ -75,7 +75,7 @@ internal class Program
         Thread thread1 = new(() =>
         {
             //SemaphoreSlim.Wait() metodu ile semaphore nesnesinin sayısını azaltıyoruz.
-            semaphoreSlim.Wait();
+            semaphoreSlim.Wait(); //içerisine süre verirsem maksimum o süre bitene kadar bekler. o süre boyunca beklemez
             int i = 0;
 
             while (i < 10)
