@@ -159,55 +159,95 @@
 #endregion
 
 #region Monitor.TryEnter
+//internal class Program
+//{
+//    private static void Main(string[] args)
+//    {
+//        //Monitor.TryEnter 
+//        //Ortak kaynak
+//        int i = 0;
+
+//        object locking = new();
+
+//        Thread thread1 = new(() =>
+//        {
+//            //Monitor.TryEnter kullanıldığında belirli bir süre içerisinde kaynağı işgal edemezse işlemi iptal eder.
+//            var result = Monitor.TryEnter(locking, 20);
+//            if (result)
+//            {
+//                try
+//                {
+
+
+//                    for (i = 0; i < 10; i++)
+//                        Console.WriteLine($"Thread 1 {i}");
+//                }
+//                finally
+//                {
+//                    Monitor.Exit(locking);
+//                }
+//            }
+
+//        });
+
+//        Thread thread2 = new(() =>
+//        {
+//            //Monitor.TryEnter kullanıldığında belirli bir süre içerisinde kaynağı işgal edemezse işlemi iptal eder.
+//            var result = Monitor.TryEnter(locking, 1);
+//            if (result)
+//            {
+//                try
+//                {
+
+
+//                    for (i = 0; i < 10; i++)
+//                        Console.WriteLine($"Thread 2 {i}");
+//                }
+//                finally
+//                {
+//                    Monitor.Exit(locking);
+//                }
+//            }
+//        });
+
+//        thread1.Start();
+//        thread2.Start();
+//    }
+//}
+#endregion
+
+#region Mutex Class
 internal class Program
 {
     private static void Main(string[] args)
     {
-        //Monitor.TryEnter 
-        //Ortak kaynak
-        int i = 0;
-
-        object locking = new();
-
+        //Mutex sınıfı : Monitor sınıfının daha gelişmiş bir versiyonudur. Monitor sınıfı sadece aynı uygulama içerisindeki threadler arasında kullanılabilirken Mutex sınıfı farklı uygulamalar (processler) arasında da kullanılabilir.
+        Mutex mutex = new();
         Thread thread1 = new(() =>
         {
-            //Monitor.TryEnter kullanıldığında belirli bir süre içerisinde kaynağı işgal edemezse işlemi iptal eder.
-            var result = Monitor.TryEnter(locking, 20);
-            if (result)
+            //Mutex sınıfı ile bir kaynağı işgal ettiğimizde o kaynağı işgal eden thread dışındaki diğer threadler o kaynağı işgal edemez.
+            //mutex.WaitOne() ile bir kaynağı işgal ederken mutex.ReleaseMutex() ile o kaynağı serbest bırakırız.
+            mutex.WaitOne();
+
+            for (int i = 0; i < 10; i++)
             {
-                try
-                {
-
-
-                    for (i = 0; i < 10; i++)
-                        Console.WriteLine($"Thread 1 {i}");
-                }
-                finally
-                {
-                    Monitor.Exit(locking);
-                }
+                Console.WriteLine($"Thread 1 {i}");
             }
 
+            mutex.ReleaseMutex();
         });
+
 
         Thread thread2 = new(() =>
         {
-            //Monitor.TryEnter kullanıldığında belirli bir süre içerisinde kaynağı işgal edemezse işlemi iptal eder.
-            var result = Monitor.TryEnter(locking, 1);
-            if (result)
+            mutex.WaitOne();
+
+            for (int i = 0; i < 10; i++)
             {
-                try
-                {
-
-
-                    for (i = 0; i < 10; i++)
-                        Console.WriteLine($"Thread 2 {i}");
-                }
-                finally
-                {
-                    Monitor.Exit(locking);
-                }
+                Console.WriteLine($"Thread 2 {i}");
             }
+
+            mutex.ReleaseMutex();
         });
 
         thread1.Start();
