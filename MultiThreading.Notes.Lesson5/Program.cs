@@ -5,14 +5,17 @@
         Run();
     }
     //Data registerdaki tutarsızlığı gidermek adına direkt sen veriyi bellekten al demek için volatile keyword'ü kullanılır.
-    volatile static int i;
+    static int i;
     private static void Run()
     {
         Thread thread1 = new(() =>
         {
             while (true)
             {
-                i++;
+                //Bazı durumlarda sadece belirli nokta da volatile kullanmak yeterli olabilir. Çünkü volatile keyword'ü kullanıldığında tüm kod bloğu için geçerli olur. Bu durumda performans kaybı yaşanabilir. Bu durumda sadece belirli bir noktada volatile keyword'ü kullanmak daha mantıklı olabilir.
+
+                //Volatile.Read bellekten okumanın garantisini veriyorum demek. Ve bu durumda tutarsızlık durumu söz konusu olmaz.
+                Volatile.Write(ref i, Volatile.Read(ref i) +1);
             }
         });
 
@@ -26,13 +29,13 @@
 
                 Console.WriteLine(i);
             }
-        });          
-                     
+        });
+
         Thread thread3 = new(() =>
         {
             while (true)
             {
-                i--;
+                Volatile.Write(ref i, Volatile.Read(ref i) - 1);
             }
         });
         thread1.Start();
