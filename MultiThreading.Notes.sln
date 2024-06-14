@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson4", "MultiThreading.Notes.Lesson4\MultiThreading.Notes.Lesson4.csproj", "{5AE82110-DCC3-4D8D-B1F4-37A2C9D1E33E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson5", "MultiThreading.Notes.Lesson5\MultiThreading.Notes.Lesson5.csproj", "{5AC4A33D-3323-4072-8245-20906A263AC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson5", "MultiThreading.Notes.Lesson5\MultiThreading.Notes.Lesson5.csproj", "{5AC4A33D-3323-4072-8245-20906A263AC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson6", "MultiThreading.Notes.Lesson6\MultiThreading.Notes.Lesson6.csproj", "{ED412D63-B756-465F-AA67-A8BD4072E9C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5AC4A33D-3323-4072-8245-20906A263AC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AC4A33D-3323-4072-8245-20906A263AC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AC4A33D-3323-4072-8245-20906A263AC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED412D63-B756-465F-AA67-A8BD4072E9C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED412D63-B756-465F-AA67-A8BD4072E9C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED412D63-B756-465F-AA67-A8BD4072E9C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED412D63-B756-465F-AA67-A8BD4072E9C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
