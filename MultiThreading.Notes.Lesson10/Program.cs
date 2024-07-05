@@ -66,28 +66,44 @@
 
 #region WaitHandle.WaitAll & WaitHandle.WaitAny
 
-AutoResetEvent autoResetEvent1 = new(false);
-AutoResetEvent autoResetEvent2 = new(false);
+//AutoResetEvent autoResetEvent1 = new(false);
+//AutoResetEvent autoResetEvent2 = new(false);
 
-ManualResetEvent manualResetEvent1 = new(false);
-ManualResetEvent manualResetEvent2 = new(false);
+//ManualResetEvent manualResetEvent1 = new(false);
+//ManualResetEvent manualResetEvent2 = new(false);
 
-//Tüm eventlerden sinyal aldıktan sonra hello mesajı gelecektir. (WaitAny metodunu test edebilmek için setlerden bir tanesini kaldırabilirsiniz.)
-autoResetEvent1.Set();
-autoResetEvent2.Set();
-manualResetEvent1.Set();
-manualResetEvent2.Set();
+////Tüm eventlerden sinyal aldıktan sonra hello mesajı gelecektir. (WaitAny metodunu test edebilmek için setlerden bir tanesini kaldırabilirsiniz.)
+//autoResetEvent1.Set();
+//autoResetEvent2.Set();
+//manualResetEvent1.Set();
+//manualResetEvent2.Set();
 
-//WaitHandle.WaitAll metodu ile belirtilen tüm WaitHandle nesneleri set edilene kadar bekler.
-//WaitHandle.WaitAny(new WaitHandle[]
+////WaitHandle.WaitAll metodu ile belirtilen tüm WaitHandle nesneleri set edilene kadar bekler.
+////WaitHandle.WaitAny(new WaitHandle[]
+////{
+////    autoResetEvent1, autoResetEvent2, manualResetEvent1, manualResetEvent2
+////});
+
+//WaitHandle.WaitAll(new WaitHandle[]
 //{
 //    autoResetEvent1, autoResetEvent2, manualResetEvent1, manualResetEvent2
 //});
 
-WaitHandle.WaitAll(new WaitHandle[]
-{
-    autoResetEvent1, autoResetEvent2, manualResetEvent1, manualResetEvent2
-});
+//Console.WriteLine("Hello");
+//Console.ReadLine();
+
+#endregion
+
+#region WaitHandle.SingleAndWait
+
+AutoResetEvent autoResetEvent1 = new(false);
+AutoResetEvent autoResetEvent2 = new(false);
+
+autoResetEvent1.Set();
+autoResetEvent2.Set();
+
+//2 tane thread için signalling davranışı sağlar.
+WaitHandle.SignalAndWait(autoResetEvent1, autoResetEvent2);
 
 Console.WriteLine("Hello");
 Console.ReadLine();
