@@ -96,42 +96,94 @@
 #endregion
 
 #region EventWaitHandle
+//internal class Program
+//{
+//    private static void Main(string[] args)
+//    {
+
+//        //EventWaitHandle, AutoResetEvent ve ManuelEvenetResetSlim'in birleşimini düşünebiliriz. Ortak bir isimlendirme yapmasını sağlar. Örneğin AutoResetEvent da WaitOne ve Set metotları vardır. ManuelResetEventSlim de Wait ve Set metotları vardır. EventWaitHandle bu metotları ortak hale getirir.
+
+//        //EventWaitHandle eventWaitHandle = new(false, EventResetMode.AutoReset);
+//        EventWaitHandle eventWaitHandle = new(false, EventResetMode.ManualReset);
+
+//        Thread thread1 = new(() =>
+//        {
+//            Console.WriteLine("Thread1");
+
+//            //Set komutu ile diğer threadlerin işlem yapmasını sağlıyoruz.
+//            eventWaitHandle.Set();
+
+
+//        });
+
+//        Thread thread2 = new(() =>
+//        {
+//            eventWaitHandle.WaitOne();
+//            Console.WriteLine("Thread2");
+//        });
+
+//        Thread thread3 = new(() =>
+//        {
+//            eventWaitHandle.WaitOne();
+//            Console.WriteLine("Thread3");
+
+//        });
+
+//        thread1.Start();
+//        thread2.Start();
+//        thread3.Start();
+//    }
+//}
+#endregion
+
+#region CountdownEvent
 internal class Program
 {
     private static void Main(string[] args)
     {
 
-        //EventWaitHandle, AutoResetEvent ve ManuelEvenetResetSlim'in birleşimini düşünebiliriz. Ortak bir isimlendirme yapmasını sağlar. Örneğin AutoResetEvent da WaitOne ve Set metotları vardır. ManuelResetEventSlim de Wait ve Set metotları vardır. EventWaitHandle bu metotları ortak hale getirir.
+        //Aşağıdaki 3 thread şartları tamamladıktan sonra sinyal versinler ve hepsi sinyali verdikten sonra ana thread veya başka bir thread işlemi yapsın.
 
-        //EventWaitHandle eventWaitHandle = new(false, EventResetMode.AutoReset);
-        EventWaitHandle eventWaitHandle = new(false, EventResetMode.ManualReset);
+        //Parametre içerisindeki 3, 3 tane threadden sinyal beklediğini temsil etmektedir.
+        CountdownEvent countdownEvent = new(3);
 
         Thread thread1 = new(() =>
         {
             Console.WriteLine("Thread1");
+            
+            Thread.Sleep(1000);
 
-            //Set komutu ile diğer threadlerin işlem yapmasını sağlıyoruz.
-            eventWaitHandle.Set();
-
-
+            countdownEvent.Signal();
         });
 
         Thread thread2 = new(() =>
         {
-            eventWaitHandle.WaitOne();
             Console.WriteLine("Thread2");
+            Thread.Sleep(5500);
+            countdownEvent.Signal();
         });
 
         Thread thread3 = new(() =>
         {
-            eventWaitHandle.WaitOne();
             Console.WriteLine("Thread3");
+            Thread.Sleep(800);
+            countdownEvent.Signal();
+        });
 
+        Thread thread4 = new(() =>
+        {
+            //Wait metodu ile sinyal beklenir. (3 tane threadden sinyal beklediğini temsil etmektedir.) 
+            //Thread1, thread2, thread3 işlemlerini tamamladıktan sonra sinyal verir ve bu thread işlemi başlar.
+            countdownEvent.Wait();
+            Console.WriteLine("Thread4");
         });
 
         thread1.Start();
         thread2.Start();
         thread3.Start();
+        thread4.Start();
+
     }
 }
+
 #endregion
