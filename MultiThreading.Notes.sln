@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson11", "MultiThreading.Notes.Lesson11\MultiThreading.Notes.Lesson11.csproj", "{6141045D-88B7-4856-B5BA-2304809D99D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson12", "MultiThreading.Notes.Lesson12\MultiThreading.Notes.Lesson12.csproj", "{5763C7EA-7103-4E4F-BE58-673EEDC1E812}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{6141045D-88B7-4856-B5BA-2304809D99D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6141045D-88B7-4856-B5BA-2304809D99D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6141045D-88B7-4856-B5BA-2304809D99D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5763C7EA-7103-4E4F-BE58-673EEDC1E812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5763C7EA-7103-4E4F-BE58-673EEDC1E812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5763C7EA-7103-4E4F-BE58-673EEDC1E812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5763C7EA-7103-4E4F-BE58-673EEDC1E812}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
