@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson8", "MultiThreading.Notes.Lesson8\MultiThreading.Notes.Lesson8.csproj", "{30B8B0FC-914F-4D34-8496-630B2ACB88D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson9", "MultiThreading.Notes.Lesson9\MultiThreading.Notes.Lesson9.csproj", "{DB92C442-A1CA-43F8-9057-F99CC3CD0D65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson9", "MultiThreading.Notes.Lesson9\MultiThreading.Notes.Lesson9.csproj", "{DB92C442-A1CA-43F8-9057-F99CC3CD0D65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson10", "MultiThreading.Notes.Lesson10\MultiThreading.Notes.Lesson10.csproj", "{D2592707-45DC-42D3-90ED-ED418905FFA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson10", "MultiThreading.Notes.Lesson10\MultiThreading.Notes.Lesson10.csproj", "{D2592707-45DC-42D3-90ED-ED418905FFA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson11", "MultiThreading.Notes.Lesson11\MultiThreading.Notes.Lesson11.csproj", "{6141045D-88B7-4856-B5BA-2304809D99D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{D2592707-45DC-42D3-90ED-ED418905FFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2592707-45DC-42D3-90ED-ED418905FFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2592707-45DC-42D3-90ED-ED418905FFA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6141045D-88B7-4856-B5BA-2304809D99D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6141045D-88B7-4856-B5BA-2304809D99D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6141045D-88B7-4856-B5BA-2304809D99D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6141045D-88B7-4856-B5BA-2304809D99D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
