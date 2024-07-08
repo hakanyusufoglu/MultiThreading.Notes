@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson13", "MultiThreading.Notes.Lesson13\MultiThreading.Notes.Lesson13.csproj", "{7420C93D-7FD0-4A92-A912-6610BA587F7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson14", "MultiThreading.Notes.Lesson14\MultiThreading.Notes.Lesson14.csproj", "{903BA8F2-C2B1-49CB-8DC8-4550C5930CF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{7420C93D-7FD0-4A92-A912-6610BA587F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7420C93D-7FD0-4A92-A912-6610BA587F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7420C93D-7FD0-4A92-A912-6610BA587F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{903BA8F2-C2B1-49CB-8DC8-4550C5930CF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{903BA8F2-C2B1-49CB-8DC8-4550C5930CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{903BA8F2-C2B1-49CB-8DC8-4550C5930CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{903BA8F2-C2B1-49CB-8DC8-4550C5930CF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
