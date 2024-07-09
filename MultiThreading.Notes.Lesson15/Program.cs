@@ -67,6 +67,9 @@
 //});
 #endregion
 
+
+#endregion
+
 #region TaskScheduler
 
 //TaskScheduler ile taskların nasıl çalışacağını belirleyebiliriz.
@@ -91,7 +94,37 @@
 //    protected override bool TryExecuteTaskInline(Task task, bool taskWasPreviouslyQueued) => true;
 //}
 #endregion
+
+#region TaskCompletionSource
+//TaskCompletionSource ile taskların durumlarını kontrol edebiliriz. 
+
+Task<int> Operation(ResultType resultType)
+{
+    TaskCompletionSource<int> taskCompletionSource = new();
+
+    switch (resultType)
+    {
+        case ResultType.Result:
+            taskCompletionSource.SetResult(42);
+            break;
+        case ResultType.Exception:
+            taskCompletionSource.SetException(new Exception("An error occured"));
+            break;
+        case ResultType.Canceled:
+            taskCompletionSource.SetCanceled();
+            break;
+    }
+
+    return taskCompletionSource.Task;
+}
+
+var task = Operation(ResultType.Result);
+
+Console.WriteLine(); //Breakpoint koyarak task değişkenini izlenmesi önerilir.
+enum ResultType
+{
+    Result,
+    Exception,
+    Canceled
+}
 #endregion
-
-
-Console.Read();
