@@ -34,13 +34,14 @@
 #endregion
 
 
-Task task = Task.Run(() =>
-{
-    for (int i = 0; i < 10; i++)
-        Console.WriteLine(i);
-});
+//Task metotlarını denemek için bu kodu yorum satırından kaldırınız.
+//Task task = Task.Run(() =>
+//{
+//    for (int i = 0; i < 10; i++)
+//        Console.WriteLine(i);
+//});
 
-//Task Methods
+//Methods
 #region Start
 //Bir task başlatıldıysa tekrar başlatılamaz
 //task.Start();
@@ -178,11 +179,96 @@ Task task = Task.Run(() =>
 #region GetAwaiter
 // Asenkron süreçlerin senkron olmasını sağlamaktadır. 
 
-Task<int> task1 = Task.Run(() => 3);
+//Task<int> task1 = Task.Run(() => 3);
 
-//Result kodu senkron hale getirir.
-var result = task1.Result;
+////Result kodu senkron hale getirir.
+//var result = task1.Result;
 
-//GetAwaiter kodu senkron hale getirir. Daha izlenebilir bir kod yapısı sağlar. Daha az maliyetlidir
-task1.GetAwaiter().GetResult();
+////GetAwaiter kodu senkron hale getirir. Daha izlenebilir bir kod yapısı sağlar. Daha az maliyetlidir
+//var result2 = task1.GetAwaiter().GetResult();
+
+//Console.Read();
+#endregion
+
+//Properties
+#region CompletedTask
+//Task X()
+//{
+//    //işlemler...
+//    //return Task.Run(()=> { }); //Taskın tamamlandığını belirtir. Taskın başarılı bir şekilde tamamlandığını belirtir.
+//    //return Task.Run(()=> { }); //Taskın tamamlandığını belirtir. Taskın başarılı bir şekilde tamamlandığını belirtir.
+
+//    //Taskın tamamlandığını belirtir. Taskın başarılı bir şekilde tamamlandığını belirtir.
+//    return Task.CompletedTask; 
+//}
+#endregion
+#region CurrentId
+//Taskın id değerini döndürür. 
+
+//Task task = Task.Run(() =>
+//{
+//    Console.WriteLine($"Task Current Id {Task.CurrentId}");
+//});
+
+//Task task2 = Task.Run(() =>
+//{
+//    Console.WriteLine($"Task-2 Current Id {Task.CurrentId}");
+//});
+//Console.Read();
+#endregion
+#region Factory
+//Taskın factorysini döndürür. Taskın oluşturulduğu factoryyi döndürür. Factory Nedir? Taskın oluşturulduğu yerdir.
+#endregion
+#region IsCompleted
+//Task tamamlanıp tamamlanmadığını gösterir
+#endregion
+#region IsCanceled
+//Task ,iptal edilip edilmediğini gösterir
+#endregion
+#region AsyncState
+//var task1 = Task.Factory.StartNew((i) =>
+//{
+//    var _i = (int)i;
+//    for (int k = 0; k < _i; k++)
+//        Console.WriteLine("Merhaba");
+
+//}, 10); // i nin değeri 10 olarak verdim. Buradaki 10 değerine aslında değer değil de state denir. Bu state değeri taskın içerisindeki metoda parametre olarak verilir.
+
+//var state = task1.AsyncState; //state değeri 10 olacaktır.
+//Console.WriteLine($"State: {state}");
+//Console.Read();
+#endregion
+#region IsCompletedSuccessfully
+//task başarılı bir şekilde tamamlandı mı tamamlanmadı mı bilgisini verir
+#endregion
+#region Id
+//Taskın id değerini döndürür. Eğer taskın id değeri yoksa null döndürür. CurrentId'den farkı ise CurrentId taskın id değerini döndürürken Id taskın id değerini döndürür.
+#endregion
+#region IsFaulted
+//Taskın hata verip vermediğini gösterir
+#endregion
+#region Status
+
+//status taskın durumunu belirtir.
+Task task2 = Task.Run(async () =>
+{
+    for (int i = 0; i < 10; i++)
+    {
+        await Task.Delay(1000);
+        Console.WriteLine(i);
+
+    }
+});
+
+TaskStatus? status = null;
+while (true) 
+{
+    if(status!=task2.Status)
+    {
+        Console.WriteLine(task2.Status);
+        status=task2.Status;
+    }
+}
+
+Console.Read();
 #endregion
