@@ -21,13 +21,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson10", "MultiThreading.Notes.Lesson10\MultiThreading.Notes.Lesson10.csproj", "{D2592707-45DC-42D3-90ED-ED418905FFA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson11", "MultiThreading.Notes.Lesson11\MultiThreading.Notes.Lesson11.csproj", "{6141045D-88B7-4856-B5BA-2304809D99D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson11", "MultiThreading.Notes.Lesson11\MultiThreading.Notes.Lesson11.csproj", "{6141045D-88B7-4856-B5BA-2304809D99D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson12", "MultiThreading.Notes.Lesson12\MultiThreading.Notes.Lesson12.csproj", "{5763C7EA-7103-4E4F-BE58-673EEDC1E812}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson12", "MultiThreading.Notes.Lesson12\MultiThreading.Notes.Lesson12.csproj", "{5763C7EA-7103-4E4F-BE58-673EEDC1E812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson13", "MultiThreading.Notes.Lesson13\MultiThreading.Notes.Lesson13.csproj", "{7420C93D-7FD0-4A92-A912-6610BA587F7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson13", "MultiThreading.Notes.Lesson13\MultiThreading.Notes.Lesson13.csproj", "{7420C93D-7FD0-4A92-A912-6610BA587F7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson14", "MultiThreading.Notes.Lesson14\MultiThreading.Notes.Lesson14.csproj", "{903BA8F2-C2B1-49CB-8DC8-4550C5930CF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreading.Notes.Lesson14", "MultiThreading.Notes.Lesson14\MultiThreading.Notes.Lesson14.csproj", "{903BA8F2-C2B1-49CB-8DC8-4550C5930CF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreading.Notes.Lesson15", "MultiThreading.Notes.Lesson15\MultiThreading.Notes.Lesson15.csproj", "{F0C7A2D1-A801-4FA9-B113-02FA026DDC0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{903BA8F2-C2B1-49CB-8DC8-4550C5930CF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{903BA8F2-C2B1-49CB-8DC8-4550C5930CF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{903BA8F2-C2B1-49CB-8DC8-4550C5930CF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0C7A2D1-A801-4FA9-B113-02FA026DDC0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0C7A2D1-A801-4FA9-B113-02FA026DDC0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0C7A2D1-A801-4FA9-B113-02FA026DDC0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0C7A2D1-A801-4FA9-B113-02FA026DDC0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
