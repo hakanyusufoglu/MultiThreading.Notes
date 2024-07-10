@@ -66,3 +66,20 @@ catch (Exception ex)
     Console.WriteLine(ex.Message);
 }
 #endregion
+
+#region Task & ValueTask
+//Ağır işlemler için Task kullanılır. (Heapte saklanır)
+//Hafif işlemler için ValueTask kullanılır. (Stackte saklanır) Tasktaki tüm propertyler geçerlidir.
+async Task X()
+{
+
+}
+
+//Örnek 1+1 işlemi burada yapılır (en basit örnek)
+async ValueTask Y()
+{
+}
+
+await X();
+await Y();
+#endregion
