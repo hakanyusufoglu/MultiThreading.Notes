@@ -121,32 +121,61 @@
 #endregion
 
 #region ConcurrentQueue<T>
-//ConcurrentQueue<T> sınıfı thread güvenli bir şekilde eleman eklemek ve çıkarmak için FIFO (first in first out) mantığı ile hareket eder.
+////ConcurrentQueue<T> sınıfı thread güvenli bir şekilde eleman eklemek ve çıkarmak için FIFO (first in first out) mantığı ile hareket eder.
 
-ConcurrentQueue<int> numbers = new();
+//ConcurrentQueue<int> numbers = new();
 
+//Task producer = Task.Run(async () =>
+//{
+//    for (int i = 0; i < 10; i++)
+//    {
+//        numbers.Enqueue(i);
+//        Console.WriteLine($"Producer {i}");
+//        await Task.Delay(100);
+//    }
+//});
+
+//Task consumer = Task.Run(async () =>
+//{
+//    await Task.Delay(3000);
+
+//    while (true)
+//    {
+//        if (numbers.TryDequeue(out int result))
+//        {
+//            Console.WriteLine($"Consumer {result}");
+//            await Task.Delay(100);
+
+//        }
+//    }
+//});
+
+//await Task.WhenAny(producer, consumer);
+
+//Console.ReadLine();
+#endregion
+
+#region ConcurrentDictionary<TKey, TValue>
+
+ConcurrentDictionary<int,int> numbers = new();
 Task producer = Task.Run(async () =>
 {
     for (int i = 0; i < 10; i++)
     {
-        numbers.Enqueue(i);
-        Console.WriteLine($"Producer {i}");
+        numbers[i] = i * 5;
+        Console.WriteLine($"Producer : '{i}' key'ine karşılık '{i*5}' değeri verilmiştir.");
         await Task.Delay(100);
     }
 });
 
 Task consumer = Task.Run(async () =>
 {
-    await Task.Delay(3000);
-
-    while (true)
+    Task.Delay(1000);
+    for (int i = 0; i < 10; i++)
     {
-        if (numbers.TryDequeue(out int result))
-        {
-            Console.WriteLine($"Consumer {result}");
-            await Task.Delay(100);
-
-        }
+        numbers[i] = i * 5;
+        Console.WriteLine($"Consumer : '{i}' key'ine karşılık '{numbers[i]}' değeri okunmuştur.");
+        await Task.Delay(300);
     }
 });
 
