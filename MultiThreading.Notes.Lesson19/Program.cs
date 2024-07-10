@@ -120,3 +120,37 @@
 //Console.ReadLine();
 #endregion
 
+#region ConcurrentQueue<T>
+//ConcurrentQueue<T> sınıfı thread güvenli bir şekilde eleman eklemek ve çıkarmak için FIFO (first in first out) mantığı ile hareket eder.
+
+ConcurrentQueue<int> numbers = new();
+
+Task producer = Task.Run(async () =>
+{
+    for (int i = 0; i < 10; i++)
+    {
+        numbers.Enqueue(i);
+        Console.WriteLine($"Producer {i}");
+        await Task.Delay(100);
+    }
+});
+
+Task consumer = Task.Run(async () =>
+{
+    await Task.Delay(3000);
+
+    while (true)
+    {
+        if (numbers.TryDequeue(out int result))
+        {
+            Console.WriteLine($"Consumer {result}");
+            await Task.Delay(100);
+
+        }
+    }
+});
+
+await Task.WhenAny(producer, consumer);
+
+Console.ReadLine();
+#endregion
